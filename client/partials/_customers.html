@@ -1,0 +1,24 @@
+<h3 ng-init='getCusts()'>Add New Customer
+<form nonvalidate name='nCust'>
+    <label>Name : <input type="text" ng-model="newCust.name"></label>
+    <input type="submit" value="Add Customer" ng-click='addCust()'>
+</form></h3>
+<fieldset ng-if='custlist.length > 0'>
+<label>Filter by Name: <input ng-model="filterText.name"></label>
+<table>
+    <thead>
+        <tr>
+            <th><a ng-click="sortType = 'name'; sortReverse = !sortReverse">Customer Name</a></th>
+            <th><a ng-click="sortType = 'created_at'; sortReverse = !sortReverse">Date Added</a></th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat='cust in custlist | orderBy:sortType:sortReverse | filter:filterText'>
+            <td ng-bind='cust.name'></td>
+            <td ng-bind='cust.created_at'></td>
+            <td><button ng-click='delCust(cust._id)'>Remove</button></td>
+        </tr>
+    </tbody>
+</table>
+</fieldset>
