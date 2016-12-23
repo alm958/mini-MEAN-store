@@ -1,7 +1,7 @@
 <h3 ng-init='getCusts()'>Add New Customer
 <form nonvalidate name='nCust'>
-    <label>Name : <input type="text" ng-model="newCust.name"></label>
-    <input type="submit" value="Add Customer" ng-click='addCust()'>
+    <label>Name : <input type="text" ng-model="newCust.name" required></label>
+    <input type="submit" value="Add Customer" ng-click='addCust()' ng-disabled='nCust.$invalid'>
 </form></h3>
 <fieldset ng-if='custlist.length > 0'>
 <label>Filter by Name: <input ng-model="filterText.name"></label>

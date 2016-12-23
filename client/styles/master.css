@@ -29,3 +29,27 @@
 }
 .Products {margin-top: 4px;}
 fieldset{background-color: beige;}
+th, td {
+    font-weight: lighter;
+    border-bottom: 1px solid #ddd;
+    vertical-align: middle;
+    text-align:  left;
+}
+table{
+    width: 85%;
+    min-width: 600px;
+}
+th.date, td.date {
+    font-weight: lighter;
+    border-bottom: 1px solid #ddd;
+    vertical-align: middle;
+    text-align: justify;
+    width:160px;
+}
+th.action, td.action {
+    font-weight: lighter;
+    border-bottom: 1px solid #ddd;
+    vertical-align: middle;
+    text-align: center;
+    width:90px;
+}

@@ -1,1 +1,39 @@
-<h1>orders</h1>
+<form name='nOrderForm' nonvalidate ng-init='getLists()'>
+    <h3>Add a new order</h3>
+    <label>Customer :
+        <select ng-model='nOrder.customer' required>
+            <option ng-repeat='cust in custlist | orderBy:sortType:sortReverse' value="{{cust._id}}" ng-bind='cust.name'></option>
+        </select>
+    </label>
+    <label>Product :
+        <select ng-model='nOrder.product' required>
+            <option ng-repeat='prod in prodlist | orderBy:sortType:sortReverse' value="{{prod._id}}" ng-bind='prod.name'></option>
+        </select>
+    </label>
+    <label>Quantity :<input type="number" min='1' ng-model='nOrder.quantity' ng-init='nOrder.quantity=1'></label>
+    <input type="submit" value="Submit Order" ng-click='addOrder() && $scope.nOrderForm.$setPristine()' ng-disabled='nOrderForm.$invalid'>
+</form><br>
+<fieldset ng-if='orderlist.length > 0'>
+<label>Filter by Customer Name: <input ng-model="filterText.customer.name"></label>
+<label>Filter by Product Name: <input ng-model="filterText.product.name"></label><br>
+<table>
+    <thead>
+        <tr>
+            <th><a ng-click="sortType = 'customer.name'; sortReverse = !sortReverse">Customer Name</a></th>
+            <th><a ng-click="sortType = 'product.name'; sortReverse = !sortReverse">Product</a></th>
+            <th><a ng-click="sortType = 'quantity'; sortReverse = !sortReverse">Quantity</a></th>
+            <th><a ng-click="sortType = 'created_at'; sortReverse = !sortReverse">Date Added</a></th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat='order in orderlist | orderBy:sortType:sortReverse | filter:filterText'>
+            <td ng-bind='order.customer.name'></td>
+            <td ng-bind='order.product.name'></td>
+            <td ng-bind='order.quantity'></td>
+            <td ng-bind='order.created_at'></td>
+            <td><button ng-click='delOrder(order._id)'>Remove</button></td>
+        </tr>
+    </tbody>
+</table>
+</fieldset>

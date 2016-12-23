@@ -13,4 +13,7 @@ module.exports = function(app){
     app.post('/customers', customersController.create);
     app.delete('/customers/:id', customersController.delete);
 
+    app.get('/orders', ordersController.index);
+    app.post('/orders', ordersController.create);
+    app.delete('/orders/:id', ordersController.delete);
 };

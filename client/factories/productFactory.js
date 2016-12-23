@@ -37,6 +37,16 @@ app.factory('productFactory', ['$http', function($http){
                 console.log(err);
             });
     }
+    pFactory.delProd = function(id, callback){
+        $http.delete(`/products/${id}`)
+            .then(function(response){
+                console.log(response);
+                callback();
+            })
+            .catch(function(err){
+                console.log(err);
+            });
+    }
 
 
     return pFactory;
